@@ -125,15 +125,14 @@ async def draw_tarot():
 @api_router.post("/companion", response_model=CompanionResponse)
 async def companion(payload: CompanionRequest):
     message = payload.message.lower()
+    response = "There is something important in the way you named that. Rather than rushing toward an answer, we can listen for what this experience is asking you to notice."
+    invitation = "If this feeling had wisdom rather than a problem, what might it be pointing toward?"
     if any(word in message for word in ["stuck", "lost", "confused"]):
         response = "It sounds like certainty has gone quiet for a moment. That does not mean your direction is gone—only that it may need more space than pressure."
         invitation = "What is one thing you know you no longer want to abandon in yourself?"
     elif any(word in message for word in ["anxious", "afraid", "worried"]):
         response = "I hear how much your mind is trying to protect you by rehearsing what could happen. Let’s separate the signal from the noise, gently."
         invitation = "What feels true in this exact moment, before the next moment arrives?"
-    else:
-        response = "There is something important in the way you named that. Rather than rushing toward an answer, we can listen for what this experience is asking you to notice."
-        invitation = "If this feeling had wisdom rather than a problem, what might it be pointing toward?"
     return CompanionResponse(response=response, invitation=invitation)
 
 

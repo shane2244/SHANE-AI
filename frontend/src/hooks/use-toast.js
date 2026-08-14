@@ -37,6 +37,17 @@ const addToRemoveQueue = (toastId) => {
   toastTimeouts.set(toastId, timeout)
 }
 
+const dismissToasts = (state, toastId) => {
+  if (toastId) addToRemoveQueue(toastId)
+  else state.toasts.forEach((toastItem) => addToRemoveQueue(toastItem.id))
+  return state.toasts.map((toastItem) =>
+    toastItem.id === toastId || toastId === undefined ? { ...toastItem, open: false } : toastItem
+  )
+}
+
+const removeToasts = (state, toastId) =>
+  toastId === undefined ? [] : state.toasts.filter((toastItem) => toastItem.id !== toastId)
+
 export const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TOAST":
@@ -54,43 +65,28 @@ export const reducer = (state, action) => {
 
     case "DISMISS_TOAST": {
       const { toastId } = action
-
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
-      if (toastId) {
-        addToRemoveQueue(toastId)
-      } else {
-        state.toasts.forEach((toast) => {
-          addToRemoveQueue(toast.id)
-        })
-      }
-
       return {
         ...state,
-        toasts: state.toasts.map((t) =>
-          t.id === toastId || toastId === undefined
-            ? {
-                ...t,
-                open: false,
-              }
-            : t),
+        toasts: dismissToasts(state, toastId),
       };
     }
     case "REMOVE_TOAST":
-      if (action.toastId === undefined) {
-        return {
-          ...state,
-          toasts: [],
-        }
-      }
       return {
         ...state,
-        toasts: state.toasts.filter((t) => t.id !== action.toastId),
+        toasts: removeToasts(state, action.toastId),
       };
   }
 }
 
 const listeners = []
+
+const subscribe = (listener) => {
+  listeners.push(listener)
+  return () => {
+    const listenerIndex = listeners.indexOf(listener)
+    if (listenerIndex > -1) listeners.splice(listenerIndex, 1)
+  }
+}
 
 let memoryState = { toasts: [] }
 
@@ -136,14 +132,8 @@ function useToast() {
   const [state, setState] = React.useState(memoryState)
 
   React.useEffect(() => {
-    listeners.push(setState)
-    return () => {
-      const index = listeners.indexOf(setState)
-      if (index > -1) {
-        listeners.splice(index, 1)
-      }
-    };
-  }, [state])
+    return subscribe(setState)
+  }, [setState])
 
   return {
     ...state,

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { ArrowRight, Bird, CloudMoon, Eye, Hash, Leaf, Search, Sparkles } from "lucide-react";
 
 const entries = [
@@ -22,7 +22,7 @@ export default function MeaningsPage() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [selected, setSelected] = useState(null);
-  const filtered = useMemo(() => entries.filter((entry) => (category === "All" || entry.category === category) && `${entry.title} ${entry.short}`.toLowerCase().includes(query.toLowerCase())), [query, category]);
+  const filtered = entries.filter((entry) => (category === "All" || entry.category === category) && `${entry.title} ${entry.short}`.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <div className="page meanings-page">

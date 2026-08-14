@@ -6,6 +6,29 @@ import { motion } from "framer-motion";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const moods = ["Open", "Tender", "Restless", "Grounded", "Bright"];
+const weeklyRhythm = [
+  { day: "mon", height: 2 }, { day: "tue", height: 4 }, { day: "wed", height: 3 },
+  { day: "thu", height: 5 }, { day: "fri", height: 4 }, { day: "sat", height: 1 }, { day: "sun", height: 1 },
+];
+
+const MoodCheckIn = ({ selected, saved, error, onSelect, onSave }) => (
+  <section className="checkin-band" data-testid="mood-checkin-section">
+    <div><p className="kicker">60-second check-in</p><h2>How are you arriving?</h2></div>
+    <div className="mood-list">
+      {moods.map((mood) => <button key={mood} className={selected === mood ? "selected" : ""} onClick={() => onSelect(mood)} data-testid={`mood-${mood.toLowerCase()}-button`}>{mood}</button>)}
+    </div>
+    <button className="save-checkin" onClick={onSave} data-testid="save-mood-button">{saved ? <><CircleCheck size={18} /> Saved</> : "Save check-in"}</button>
+    {error && <p className="action-error" data-testid="mood-save-error">{error}</p>}
+  </section>
+);
+
+const RhythmPanel = ({ dashboard }) => (
+  <article className="rhythm-panel" data-testid="weekly-rhythm-panel">
+    <div className="rhythm-title"><div><p className="kicker">Your rhythm</p><h3>This week</h3></div><Flame /></div>
+    <div className="rhythm-bars">{weeklyRhythm.map(({ day, height }) => <span key={day} data-testid={`rhythm-${day}-bar`} style={{ height: `${height * 12}px` }} />)}</div>
+    <p><strong>{dashboard.mood_count}</strong> check-ins · <strong>{dashboard.journal_count}</strong> journal notes</p>
+  </article>
+);
 
 export default function TodayPage() {
   const [selected, setSelected] = useState("Open");
@@ -13,7 +36,14 @@ export default function TodayPage() {
   const [error, setError] = useState("");
   const [dashboard, setDashboard] = useState({ mood_count: 0, journal_count: 0 });
 
-  useEffect(() => { axios.get(`${API}/dashboard`).then(({ data }) => setDashboard(data)).catch(() => {}); }, []);
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/dashboard`, { signal: controller.signal })
+      .then((result) => result.json())
+      .then((payload) => setDashboard(payload))
+      .catch((requestError) => { if (requestError.name !== "AbortError") setError("Your rhythm is temporarily unavailable."); });
+    return () => controller.abort();
+  }, []);
   const saveMood = async () => {
     try {
       setError("");
@@ -37,14 +67,7 @@ export default function TodayPage() {
         <div className="signal-orbit" aria-hidden="true"><span>truth</span><span>empathy</span><span>purpose</span><div className="orbit-core">S</div></div>
       </section>
 
-      <section className="checkin-band" data-testid="mood-checkin-section">
-        <div><p className="kicker">60-second check-in</p><h2>How are you arriving?</h2></div>
-        <div className="mood-list">
-          {moods.map((mood) => <button key={mood} className={selected === mood ? "selected" : ""} onClick={() => { setSelected(mood); setSaved(false); }} data-testid={`mood-${mood.toLowerCase()}-button`}>{mood}</button>)}
-        </div>
-        <button className="save-checkin" onClick={saveMood} data-testid="save-mood-button">{saved ? <><CircleCheck size={18} /> Saved</> : "Save check-in"}</button>
-        {error && <p className="action-error" data-testid="mood-save-error">{error}</p>}
-      </section>
+      <MoodCheckIn selected={selected} saved={saved} error={error} onSelect={(mood) => { setSelected(mood); setSaved(false); setError(""); }} onSave={saveMood} />
 
       <section className="today-grid">
         <article className="focus-panel" data-testid="current-focus-panel">
@@ -52,11 +75,7 @@ export default function TodayPage() {
           <h2>Notice what becomes possible when you stop performing certainty.</h2>
           <Link to="/journal" data-testid="write-in-journal-link">Write what comes up <ArrowRight size={17} /></Link>
         </article>
-        <article className="rhythm-panel" data-testid="weekly-rhythm-panel">
-          <div className="rhythm-title"><div><p className="kicker">Your rhythm</p><h3>This week</h3></div><Flame /></div>
-          <div className="rhythm-bars">{[2,4,3,5,4,1,1].map((height, index) => <span key={index} style={{ height: `${height * 12}px` }} />)}</div>
-          <p><strong>{dashboard.mood_count}</strong> check-ins · <strong>{dashboard.journal_count}</strong> journal notes</p>
-        </article>
+        <RhythmPanel dashboard={dashboard} />
       </section>
       <section className="starseed-feature" data-testid="starseed-feature-section">
         <div className="starseed-image"><img src="https://images.unsplash.com/photo-1720293862150-db43f88382bf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBzdGFyZ2F6aW5nJTIwbWlsa3klMjB3YXklMjBuaWdodHxlbnwwfHx8Ymx1ZXwxNzg2NzI4NzI4fDA&ixlib=rb-4.1.0&q=85" alt="A person looking into a wide field of stars" /></div>

@@ -6,7 +6,14 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function JournalPage() {
   const [entries, setEntries] = useState([]); const [title, setTitle] = useState(""); const [content, setContent] = useState(""); const [saved, setSaved] = useState(false); const [error, setError] = useState("");
-  useEffect(() => { axios.get(`${API}/journals`).then(({ data }) => setEntries(data)).catch(() => {}); }, []);
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/journals`, { signal: controller.signal })
+      .then((result) => result.json())
+      .then((payload) => setEntries(payload))
+      .catch((requestError) => { if (requestError.name !== "AbortError") setError("Recent reflections could not be loaded."); });
+    return () => controller.abort();
+  }, []);
   const save = async () => { if (!title.trim() || !content.trim()) { setError("Add both a title and reflection before saving."); return; } try { setError(""); const { data } = await axios.post(`${API}/journals`, { title, content, prompt: "What part of this moment do I want to remember?" }); setEntries((items) => [data, ...items]); setTitle(""); setContent(""); setSaved(true); setTimeout(() => setSaved(false), 1800); } catch { setError("Your reflection could not be saved. Please try again in a moment."); } };
   return (
     <div className="page journal-page">
