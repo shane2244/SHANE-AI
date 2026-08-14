@@ -3,6 +3,7 @@ import { ArrowRight, CircleCheck, Flame, Orbit, Waves } from "lucide-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { StartCompass } from "@/components/StartCompass";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const moods = ["Open", "Tender", "Restless", "Grounded", "Bright"];
@@ -64,8 +65,10 @@ export default function TodayPage() {
           <p data-testid="today-description">A private AI mirror that learns the patterns you choose to share—evolving beside you as you know yourself, understand connection, and live what matters.</p>
           <Link to="/companion" className="primary-action" data-testid="begin-reflection-link">Begin a reflection <ArrowRight size={19} /></Link>
         </div>
-        <div className="signal-orbit" aria-hidden="true"><span>truth</span><span>empathy</span><span>purpose</span><div className="orbit-core">S</div></div>
+        <div className="signal-orbit" aria-hidden="true"><span>truth</span><span>empathy</span><span>purpose</span><div className="orbit-core"><img src="/shane-ai-logo.png" alt="" /></div></div>
       </section>
+
+      <StartCompass />
 
       <MoodCheckIn selected={selected} saved={saved} error={error} onSelect={(mood) => { setSelected(mood); setSaved(false); setError(""); }} onSave={saveMood} />
 

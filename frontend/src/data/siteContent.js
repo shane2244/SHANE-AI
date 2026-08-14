@@ -1,7 +1,8 @@
-import { BookOpenText, Compass, Eye, Fingerprint, HeartHandshake, House, LibraryBig, MessagesSquare, Sparkles, Waves } from "lucide-react";
+import { BookOpenText, Compass, Eye, Fingerprint, HeartHandshake, House, LibraryBig, MessagesSquare, Network, Sparkles, Waves } from "lucide-react";
 
 export const routes = [
   { path: "/", label: "Today", eyebrow: "Start here", icon: House, color: "#FFE24A", theme: "sun", depth: "begin" },
+  { path: "/knowledge", label: "The Atlas", eyebrow: "Search everything", icon: Network, color: "#FF7900", theme: "ember", depth: "begin" },
   { path: "/journey", label: "The Path", eyebrow: "Three simple steps", icon: Compass, color: "#FF7900", theme: "coral", depth: "begin" },
   { path: "/app/discovery", label: "Discovery", eyebrow: "Your plain-English map", icon: Fingerprint, color: "#C86BFF", theme: "lilac", depth: "begin" },
   { path: "/companion", label: "Companion", eyebrow: "Talk it through", icon: MessagesSquare, color: "#2FFFE0", theme: "aqua", depth: "begin" },

@@ -18,7 +18,7 @@ export default function TarotPage() {
         {[0,1,2].map((index) => {
           const card = cards[index];
           return <motion.article key={index} className={`tarot-card ${card ? "revealed" : ""}`} initial={false} animate={{ rotateY: card ? 0 : 180 }} transition={{ delay: index * .12 }} data-testid={`tarot-card-${index + 1}`}>
-            {card ? <><span className="card-index">0{index + 1}</span><div className="card-sigil"><Sparkle /></div><p className="kicker">{card.archetype}</p><h2>{card.name}</h2><p>{card.reflection}</p><blockquote>{card.question}</blockquote></> : <><div className="card-back-mark">S</div><span>Choose the unknown</span></>}
+            {card ? <><span className="card-index">0{index + 1}</span><div className="card-sigil"><Sparkle /></div><p className="kicker">{card.archetype}</p><h2>{card.name}</h2><p>{card.reflection}</p><blockquote>{card.question}</blockquote></> : <><div className="card-back-mark"><img src="/shane-ai-logo.png" alt="" /></div><span>Choose the unknown</span></>}
           </motion.article>;
         })}
       </section>

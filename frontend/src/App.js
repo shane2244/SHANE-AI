@@ -16,6 +16,7 @@ import MembershipPage from "@/pages/MembershipPage";
 import PaymentSuccessPage from "@/pages/PaymentSuccessPage";
 import MemberAccessPage from "@/pages/MemberAccessPage";
 import TraditionsPage from "@/pages/TraditionsPage";
+import KnowledgeAtlasPage from "@/pages/KnowledgeAtlasPage";
 
 function AppRoutes() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function AppRoutes() {
       <Route element={<SiteShell />}>
         <Route path="/" element={<TodayPage />} />
         <Route path="/journey" element={<JourneyPage />} />
+        <Route path="/knowledge" element={<KnowledgeAtlasPage />} />
         <Route path="/blueprint" element={<Navigate to="/app/discovery" replace />} />
         <Route path="/app/discovery" element={<BlueprintPage />} />
         <Route path="/companion" element={<CompanionPage />} />

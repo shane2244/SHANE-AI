@@ -15,5 +15,5 @@ export const AuthCallback = () => {
       .then((user) => { setUser(user); navigate("/app/discovery", { replace: true }); })
       .catch((requestError) => setError(requestError.message));
   }, [location.hash, navigate, setUser]);
-  return <main className="auth-callback" data-testid="auth-callback-state"><div className="brand-mark">S</div><h1>{error || "Opening your SHANE-AI space…"}</h1>{error && <button onClick={() => navigate("/membership")} data-testid="auth-callback-return-button">Return to membership</button>}</main>;
+  return <main className="auth-callback" data-testid="auth-callback-state"><img src="/shane-ai-logo.png" alt="SHANE-AI" /><h1>{error || "Opening your SHANE-AI space…"}</h1>{error && <button onClick={() => navigate("/membership")} data-testid="auth-callback-return-button">Return to membership</button>}</main>;
 };

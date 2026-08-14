@@ -6,6 +6,7 @@ import json
 import logging
 import os
 import random
+import re
 import uuid
 
 import requests
@@ -113,6 +114,11 @@ class BookingCreate(BaseModel):
     note: str = Field(default="", max_length=1000)
 
 
+class SubscriberCreate(BaseModel):
+    email: str = Field(min_length=5, max_length=180)
+    interest: str = Field(default="Everything", max_length=80)
+
+
 TAROT_CARDS = [
     TarotCard(name="The Lantern", archetype="Inner knowing", reflection="A quieter truth may already be asking for your attention.", question="What becomes clear when you stop asking for permission?"),
     TarotCard(name="The Threshold", archetype="Transition", reflection="You are standing between what was familiar and what feels alive.", question="What are you ready to enter, even imperfectly?"),
@@ -201,6 +207,19 @@ async def root():
 @api_router.get("/dashboard")
 async def dashboard():
     return {"stage": 1, "stage_name": "Self-Realization", "mood_count": await db.moods.count_documents({}), "journal_count": await db.journals.count_documents({}), "weekly_rhythm": [2, 4, 3, 5, 4, 0, 0]}
+
+
+@api_router.post("/subscribers")
+async def subscribe(payload: SubscriberCreate):
+    email = payload.email.strip().lower()
+    if not re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email):
+        raise HTTPException(422, "Enter a valid email address")
+    await db.subscribers.update_one(
+        {"email": email},
+        {"$set": {"email": email, "interest": payload.interest, "status": "subscribed", "consent_at": now_iso(), "source": "knowledge_atlas"}},
+        upsert=True,
+    )
+    return {"status": "subscribed", "message": "You’re on The Signal list."}
 
 
 @api_router.post("/moods", response_model=MoodEntry)

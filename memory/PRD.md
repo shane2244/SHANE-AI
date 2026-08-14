@@ -50,12 +50,26 @@ SHANE-AI is a private, thoughtful higher-self companion and living wisdom atlas.
 - Corrected code-quality findings: exhaustive backend companion defaults, cleanup-safe effects, stable React keys, shorter Today/toast logic, and verified Python identity checks.
 - Verification: frontend production build passed; backend regression suite passed 8/8; desktop/mobile E2E flows passed.
 
+### 2026-08-14 — Membership, Intelligence, and Knowledge Expansion
+
+- Added the original `/app/discovery`, `/app/sacral`, `/app/traditions`, `/app/meanings`, and `/app/connections` route structure under the redesigned shell.
+- Added five-system Discovery previews for astrology, numerology, Human Design, Chinese astrology, and Kabbalah; first half is visible before the paywall.
+- Added Stripe test membership at $22 monthly or $220 yearly with authenticated checkout, transaction tracking, status polling, and server-side premium access.
+- Added Emergent-managed Google session exchange, secure cookies, free/premium member states, private messages, booking requests, and group-event access.
+- Added Claude Sonnet 4.6 streaming companion responses with consent-based memory, review, and forget controls.
+- Expanded Sacral into Kundalini, historical Tantra versus neo-Tantra, sacred sexuality, breathwork, yoga, Akashic symbolism, consent, and safety content.
+- Added a source-linked Traditions Atlas with five editorial groups and progressive depth for newcomers versus experienced seekers.
+- Adopted the supplied SHANE-AI logo, removed Pittsburgh references, darkened all surfaces, and remapped accents to neon turquoise, orange, blue, yellow, purple, green, and dark cherry red.
+- Tightened credentialed CORS to explicit preview, production, and custom domains; environment files are excluded from source control.
+- Verification: 21/21 backend tests passed; Claude streaming, Stripe checkout, premium access, all routes, and mobile overflow checks passed.
+
 ## Prioritized Backlog
 
 ### P0 — Next Core Modules
 
-- Build the Self-Realization hub that connects personalized symbolic-system reports without merging their traditions inaccurately.
 - Add structured content models and editorial pages so the Wisdom and Meanings libraries can grow beyond in-code entries.
+- Connect a verified Human Design calculation engine and complete Kabbalah personalization without inventing results.
+- Complete direct Google Calendar synchronization after owner credentials are provided.
 
 ### P1 — Personalized Breakdown Suite
 

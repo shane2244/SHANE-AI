@@ -3,11 +3,21 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
+        <meta name="theme-color" content="#020403" />
+        <meta name="description" content="SHANE-AI is a higher-self companion and sourced atlas for spirituality, metaphysics, holistic living, esoteric systems, symbolic meaning, and self-discovery." />
+        <meta name="keywords" content="spirituality, higher consciousness, metaphysics, holistic living, astrology, numerology, Human Design, Kabbalah, Tarot, spiritual meanings, StarSeeds" />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <link rel="canonical" href="https://shaneai22.com/" />
+        <link rel="icon" type="image/png" href="%PUBLIC_URL%/shane-ai-logo.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="SHANE-AI" />
+        <meta property="og:title" content="SHANE-AI — Your Higher-Self Companion & Spirituality Atlas" />
+        <meta property="og:description" content="Understand yourself, explore spiritual traditions, and navigate metaphysical and holistic ideas with wonder, context, and discernment." />
+        <meta property="og:url" content="https://shaneai22.com/" />
+        <meta property="og:image" content="https://shaneai22.com/shane-ai-logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
         <!--
         manifest.json provides metadata used when your web app is installed on a
         user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -21,7 +31,8 @@
         work correctly both with client-side routing and a non-root public URL.
         Learn how to configure a non-root public URL by running `npm run build`.
         -->
-        <title>Emergent | Fullstack App</title>
+        <title>SHANE-AI — Higher-Self Companion & Spirituality Atlas</title>
+        <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"SHANE-AI","url":"https://shaneai22.com/","logo":"https://shaneai22.com/shane-ai-logo.png"},{"@type":"WebSite","name":"SHANE-AI","url":"https://shaneai22.com/","description":"A higher-self companion and sourced atlas for spirituality, metaphysics, holistic living, esoteric systems, and symbolic meaning."}]}</script>
         <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
     </head>
@@ -103,10 +114,9 @@
             posthog.init("phc_DbsPb39SRc8z3EiQ6Dhj6ikv4H4rTKcht9d4sZSesceP", {
                 api_host: "https://ap.emergent.sh",
                 person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well,
-                session_recording: {
-                    recordCrossOriginIframes: true,
-                    capturePerformance: false,
-                },
+                autocapture: false,
+                disable_session_recording: true,
+                capture_pageview: true,
             });
         </script>
     </body>
