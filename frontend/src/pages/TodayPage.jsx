@@ -61,7 +61,7 @@ export default function TodayPage() {
         <div className="hero-copy">
           <p className="kicker" data-testid="today-date">A quiet place to begin</p>
           <h1 data-testid="today-heading">Come back to<br /><em>your own signal.</em></h1>
-          <p data-testid="today-description">A lifelong reflective companion for knowing yourself, understanding connection, and living what matters.</p>
+          <p data-testid="today-description">A private AI mirror that learns the patterns you choose to share—evolving beside you as you know yourself, understand connection, and live what matters.</p>
           <Link to="/companion" className="primary-action" data-testid="begin-reflection-link">Begin a reflection <ArrowRight size={19} /></Link>
         </div>
         <div className="signal-orbit" aria-hidden="true"><span>truth</span><span>empathy</span><span>purpose</span><div className="orbit-core">S</div></div>

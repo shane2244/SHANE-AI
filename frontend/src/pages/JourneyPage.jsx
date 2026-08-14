@@ -20,7 +20,7 @@ export default function JourneyPage() {
           </article>
         ))}
       </section>
-      <section className="journey-cta"><div><p className="kicker">Stage 01 · First practice</p><h2>Begin with the story you tell about yourself.</h2></div><Link to="/companion" data-testid="start-first-practice-link">Start practice <ArrowRight /></Link></section>
+      <section className="journey-cta"><div><p className="kicker">Stage 01 · Self-Realization</p><h2>Meet your astrology, numerology, Human Design, Chinese astrology, and Kabbalah maps.</h2></div><Link to="/app/discovery" data-testid="start-first-practice-link">Explore your blueprint <ArrowRight /></Link></section>
     </motion.div>
   );
 }

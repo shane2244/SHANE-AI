@@ -5,7 +5,7 @@ import { routes } from "@/data/siteContent";
 export const PathNavigator = () => (
   <nav className="path-rail" aria-label="Explore SHANE-AI" data-testid="path-navigator">
     <div className="path-rail-track">
-      {routes.map(({ path, label, eyebrow, icon: Icon, color }) => (
+      {routes.map(({ path, label, eyebrow, icon: Icon, color, depth }) => (
         <NavLink
           key={path}
           to={path}
@@ -20,7 +20,7 @@ export const PathNavigator = () => (
               <span className="path-icon"><Icon size={22} strokeWidth={1.8} /></span>
               <span className="path-copy">
                 <strong>{label}</strong>
-                <small>{eyebrow}</small>
+                <small>{depth === "deep" ? "◆ " : ""}{eyebrow}</small>
               </span>
             </>
           )}
