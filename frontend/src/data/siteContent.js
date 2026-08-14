@@ -1,4 +1,4 @@
-import { BookOpenText, Compass, House, LibraryBig, MessagesSquare, Sparkles } from "lucide-react";
+import { BookOpenText, Compass, Eye, House, LibraryBig, MessagesSquare, Sparkles } from "lucide-react";
 
 export const routes = [
   { path: "/", label: "Today", eyebrow: "Your daily return", icon: House, color: "#F1C75B", theme: "sun" },
@@ -7,6 +7,7 @@ export const routes = [
   { path: "/tarot", label: "Tarot Play", eyebrow: "Meet the mirror", icon: Sparkles, color: "#D9A7FF", theme: "violet" },
   { path: "/journal", label: "Journal", eyebrow: "Keep what matters", icon: BookOpenText, color: "#75D19C", theme: "green" },
   { path: "/wisdom", label: "Wisdom", eyebrow: "Explore the unseen", icon: LibraryBig, color: "#FF9E64", theme: "ember" },
+  { path: "/meanings", label: "Meanings", eyebrow: "Decode the symbol", icon: Eye, color: "#FF8FAB", theme: "rose" },
 ];
 
 export const stages = [

@@ -7,6 +7,7 @@ import CompanionPage from "@/pages/CompanionPage";
 import TarotPage from "@/pages/TarotPage";
 import JournalPage from "@/pages/JournalPage";
 import WisdomPage from "@/pages/WisdomPage";
+import MeaningsPage from "@/pages/MeaningsPage";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/tarot" element={<TarotPage />} />
           <Route path="/journal" element={<JournalPage />} />
           <Route path="/wisdom" element={<WisdomPage />} />
+          <Route path="/meanings" element={<MeaningsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

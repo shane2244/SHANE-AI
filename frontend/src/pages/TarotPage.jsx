@@ -8,10 +8,12 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 export default function TarotPage() {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
-  const draw = async () => { setLoading(true); const { data } = await axios.get(`${API}/tarot/draw`); setCards(data); setLoading(false); };
+  const [error, setError] = useState("");
+  const draw = async () => { setLoading(true); setError(""); try { const { data } = await axios.get(`${API}/tarot/draw`); setCards(data); } catch { setError("The cards could not be drawn just now. Take a breath and try again."); } finally { setLoading(false); } };
   return (
     <div className="page tarot-page">
       <section className="tarot-intro"><p className="kicker">Tarot as play therapy</p><h1 data-testid="tarot-heading">Not a prediction.<br /><em>A projection.</em></h1><p data-testid="tarot-description">Choose three archetypes as mirrors for what your imagination, attention, and intuition may already be holding.</p><button onClick={draw} className="primary-action" data-testid="draw-cards-button">{cards.length ? <RefreshCw size={18} /> : <Sparkle size={18} />}{loading ? "Shuffling…" : cards.length ? "Draw again" : "Draw three mirrors"}</button></section>
+      {error && <p className="action-error" data-testid="tarot-draw-error">{error}</p>}
       <section className="tarot-table" data-testid="tarot-card-area">
         {[0,1,2].map((index) => {
           const card = cards[index];

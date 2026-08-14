@@ -10,13 +10,19 @@ const moods = ["Open", "Tender", "Restless", "Grounded", "Bright"];
 export default function TodayPage() {
   const [selected, setSelected] = useState("Open");
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState("");
   const [dashboard, setDashboard] = useState({ mood_count: 0, journal_count: 0 });
 
   useEffect(() => { axios.get(`${API}/dashboard`).then(({ data }) => setDashboard(data)).catch(() => {}); }, []);
   const saveMood = async () => {
-    await axios.post(`${API}/moods`, { mood: selected, energy: 3, note: "" });
-    setSaved(true);
-    setDashboard((value) => ({ ...value, mood_count: value.mood_count + 1 }));
+    try {
+      setError("");
+      await axios.post(`${API}/moods`, { mood: selected, energy: 3, note: "" });
+      setSaved(true);
+      setDashboard((value) => ({ ...value, mood_count: value.mood_count + 1 }));
+    } catch {
+      setError("Your check-in could not be saved. Please try again in a moment.");
+    }
   };
 
   return (
@@ -37,6 +43,7 @@ export default function TodayPage() {
           {moods.map((mood) => <button key={mood} className={selected === mood ? "selected" : ""} onClick={() => { setSelected(mood); setSaved(false); }} data-testid={`mood-${mood.toLowerCase()}-button`}>{mood}</button>)}
         </div>
         <button className="save-checkin" onClick={saveMood} data-testid="save-mood-button">{saved ? <><CircleCheck size={18} /> Saved</> : "Save check-in"}</button>
+        {error && <p className="action-error" data-testid="mood-save-error">{error}</p>}
       </section>
 
       <section className="today-grid">
