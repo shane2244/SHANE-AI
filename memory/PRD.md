@@ -63,6 +63,18 @@ SHANE-AI is a private, thoughtful higher-self companion and living wisdom atlas.
 - Tightened credentialed CORS to explicit preview, production, and custom domains; environment files are excluded from source control.
 - Verification: 21/21 backend tests passed; Claude streaming, Stripe checkout, premium access, all routes, and mobile overflow checks passed.
 
+### 2026-08-14 — Authority, Growth, and Intuitive Arts
+
+- Added a searchable central Atlas spanning higher consciousness, metaphysics, holistic living, spiritual traditions, esoteric systems, symbols, and intuition/channeling.
+- Added a plainspoken newcomer compass that routes people by their immediate need rather than spiritual vocabulary.
+- Added The Signal consented email list, worldwide SEO metadata, Open Graph, JSON-LD, accessible skip navigation, and privacy-safe pageview analytics with session recording disabled.
+- Added public Methods & Accuracy documentation that labels live, preview, held-back, and interpretive engines instead of manufacturing precision.
+- Added an extensive Intuition & Channeling Atlas with ten abilities, four explanatory lenses, and sourced profiles of Lee Carroll/Kryon, Esther Hicks/Abraham, Darryl Anka/Bashar, and Edgar Cayce.
+- Added a channeling discernment code covering consent, fear/urgency, high-stakes decisions, prediction tracking, daily functioning, and appropriate support.
+- Completed competitive benchmarking across Nementum, Cosmic Oceans, myBodyGraph, Gaia, CaleaDream, Insight Timer, Mindvalley, Co-Star, CHANI, The Pattern, Sanctuary, and leading AI companions.
+- Identified SHANE-AI’s moat as a living personal spirituality operating system: sourced knowledge + consented evolving AI + connected systems + real-world integration.
+- Verification expanded to 30/30 backend tests and responsive UI checks; strict CORS passes at app level. Public preview OPTIONS remains controlled by upstream ingress and requires platform support.
+
 ## Prioritized Backlog
 
 ### P0 — Next Core Modules
@@ -70,6 +82,8 @@ SHANE-AI is a private, thoughtful higher-self companion and living wisdom atlas.
 - Add structured content models and editorial pages so the Wisdom and Meanings libraries can grow beyond in-code entries.
 - Connect a verified Human Design calculation engine and complete Kabbalah personalization without inventing results.
 - Complete direct Google Calendar synchronization after owner credentials are provided.
+- Build the Integration Loop: convert any insight into one real-world experiment, then learn from the 24-hour and seven-day outcome.
+- Add a personal Meaning Graph linking symbols, dreams, readings, memories, and life events with user-controlled provenance.
 
 ### P1 — Personalized Breakdown Suite
 

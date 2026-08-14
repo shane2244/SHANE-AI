@@ -19,7 +19,7 @@ export const SiteShell = () => {
           <img src="/shane-ai-logo.png" alt="SHANE-AI" data-testid="shane-ai-main-logo" />
         </a>
         <PathNavigator />
-        <div className="header-actions"><KnowledgeSearch/>{user?.is_premium ? <button className="premium-pill" onClick={logout} data-testid="premium-status-pill"><LogOut size={17} /><span><strong>Premium</strong><small>Active · Sign out</small></span></button> : <Link to="/membership" className="premium-pill" data-testid="premium-status-pill"><Crown size={17} /><span><strong>Go Premium</strong><small>{user ? "Unlock your path" : "Sign in to begin"}</small></span></Link>}</div>
+        <div className="header-actions"><KnowledgeSearch/>{user?.is_premium ? <button className="premium-pill" onClick={logout} data-testid="premium-active-status-button"><LogOut size={17} /><span><strong>Premium</strong><small>Active · Sign out</small></span></button> : <Link to="/membership" className="premium-pill" data-testid="open-premium-membership-link"><Crown size={17} /><span><strong>Go Premium</strong><small>{user ? "Unlock your path" : "Sign in to begin"}</small></span></Link>}</div>
       </header>
       <main className="page-frame" id="main-content"><Outlet /></main>
       <footer className="site-footer">

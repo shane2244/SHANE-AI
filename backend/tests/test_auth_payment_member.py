@@ -24,8 +24,8 @@ def api_client():
 
 def test_auth_me_rejects_missing_session(api_client):
     response = api_client.get(f"{API_BASE}/auth/me", timeout=20)
-    assert response.status_code == 401
-    assert "required" in response.text.lower() or "session" in response.text.lower()
+    assert response.status_code == 204
+    assert response.text == ""
 
 
 def test_auth_me_accepts_seeded_free_bearer_session(api_client):

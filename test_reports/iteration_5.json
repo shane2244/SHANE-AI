@@ -1,0 +1,57 @@
+{
+  "summary": "Retested backend + frontend regression for strict CORS, auth/me 204 behavior, Intuition & Channeling Atlas content, global search, methods labels, responsive overflow, and build/pytest health. Application-layer CORS is strict on localhost; public preview OPTIONS is still wildcard at ingress.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "Public preview OPTIONS /api/*",
+        "issue": "Ingress/proxy still returns access-control-allow-origin: * for both allowed and malicious origins, masking strict FastAPI app-layer CORS behavior.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Credentialed CORS in public preview",
+        "issue": "Browser-facing preflight behavior is controlled upstream and does not reflect strict backend allowlist behavior.",
+        "affected_selectors": []
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_core_api.py",
+    "/app/backend/tests/test_auth_payment_member.py",
+    "/app/backend/tests/test_subscribers_cors.py",
+    "/app/backend/tests/test_cors_app_vs_ingress.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Escalate preview ingress CORS override to platform support; app code cannot force strict preflight if OPTIONS is intercepted upstream.",
+    "Keep strict app-layer CORS regression tests against localhost:8001 as guardrails.",
+    "Optionally make data-testid values globally unique where duplicated (premium-status-pill appears in two conditional nodes)."
+  ],
+  "critical_code_review_comments": [
+    "server.py correctly derives APP_ALLOWED_ORIGINS only from APP_ALLOWED_HOSTS and does not read CORS_ORIGINS for middleware setup.",
+    "AuthContext uses REACT_APP_BACKEND_URL and guest auth/me now cleanly handles 204 without console noise in tested run.",
+    "One duplicate data-testid exists (premium-status-pill) across conditional link/button variants in SiteShell; low-risk but not globally unique."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_auth_payment_member.py",
+    "/app/backend/tests/test_subscribers_cors.py",
+    "/app/backend/tests/test_cors_app_vs_ingress.py",
+    "/app/test_reports/iteration_5.json"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "96%"
+  },
+  "test_credentials": "Used seeded session tokens from /app/memory/test_credentials.md: test_session_shane_free_2026 and test_session_shane_premium_2026.",
+  "seed_data_creation": "Regression tests created/updated test subscriber and member test records via API calls.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All 30 backend pytest checks passed after aligning guest auth expectation to 204 and routing strict CORS assertions to localhost app-layer. Public preview still shows wildcard CORS on OPTIONS (ingress-level). UI checks passed for /knowledge/intuitive (10 abilities, 4 lenses, 4 channeler profiles, discernment + safety), /knowledge world + global search (clairvoyance/channeling), and /methods state labels with desktop/mobile overflow=0.",
+  "rca of the issue": "Reproduction: OPTIONS to preview URL returns 204 with access-control-allow-origin:* for both allowed and malicious origins. OPTIONS to localhost:8001 returns strict expected behavior (allowed origin echoed with credentials=true, malicious origin 400/no allow-origin). Root cause is upstream ingress/proxy CORS interception/override, not FastAPI middleware. Mitigation: platform-side CORS policy change for preview ingress; keep app-layer strict tests to prevent backend regressions."
+}

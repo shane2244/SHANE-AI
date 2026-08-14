@@ -35,6 +35,12 @@ export const knowledgeTopics = [
   { title:"Moon Cycles", world:"Symbols & Meanings", lens:"Ritual & Astronomy", route:"/app/meanings", summary:"Lunar symbolism, ritual calendars, observation, and what the moon does—and does not—determine." },
   { title:"StarSeeds", world:"Symbols & Meanings", lens:"Modern Belief", route:"/wisdom#starseeds", summary:"Cosmic identity, modern origins, lineages, literal and symbolic lenses, and discernment." },
   { title:"Akashic Records", world:"Symbols & Meanings", lens:"Spiritual Belief", route:"/app/sacral", summary:"A symbolic field of soul memory used for reflection, not verified history." },
+  { title:"Clairvoyance", world:"Intuition & Channeling", lens:"Reported Experience", route:"/knowledge/intuitive", summary:"Inner imagery or visual information people describe as arriving beyond ordinary perception." },
+  { title:"Clairaudience", world:"Intuition & Channeling", lens:"Reported Experience", route:"/knowledge/intuitive", summary:"Words, tones, or messages experienced internally and interpreted as intuitive hearing." },
+  { title:"Clairsentience", world:"Intuition & Channeling", lens:"Reported Experience", route:"/knowledge/intuitive", summary:"Bodily or emotional impressions interpreted as information about a person, place, or situation." },
+  { title:"Claircognizance", world:"Intuition & Channeling", lens:"Reported Experience", route:"/knowledge/intuitive", summary:"A sudden sense of knowing without a consciously recognized chain of reasoning." },
+  { title:"Mediumship", world:"Intuition & Channeling", lens:"Spiritual & Research Lenses", route:"/knowledge/intuitive", summary:"The reported reception of information attributed to deceased human beings." },
+  { title:"Channeling", world:"Intuition & Channeling", lens:"Spiritual & Psychological Lenses", route:"/knowledge/intuitive", summary:"Speaking or writing information attributed to a source outside ordinary conscious awareness." },
 ];
 
 export const knowledgeWorlds = [
@@ -44,4 +50,5 @@ export const knowledgeWorlds = [
   { id:"traditions", title:"Spiritual Traditions", color:"#39A7FF", description:"Living religions, mystical paths, contemplative lineages, origin, and context." },
   { id:"esoteric", title:"Esoteric Systems", color:"#FF7900", description:"Astrology, numerology, Human Design, Kabbalah, Tarot, Hermeticism, and alchemy." },
   { id:"symbols", title:"Symbols & Meanings", color:"#FFE24A", description:"Dreams, numbers, animals, synchronicity, cosmic identity, and personal mythology." },
+  { id:"intuitive", title:"Intuition & Channeling", color:"#C86BFF", description:"The clairs, mediumship, channeling, automatic writing, notable figures, research, and discernment." },
 ];

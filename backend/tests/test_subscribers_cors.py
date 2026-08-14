@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 load_dotenv(Path("/app/frontend/.env"))
 BASE_URL = os.environ.get("REACT_APP_BACKEND_URL").rstrip("/")
 API_BASE = f"{BASE_URL}/api"
+CORS_API_BASE = "http://localhost:8001/api"
 ALLOWED_ORIGIN = BASE_URL
 DISALLOWED_ORIGIN = "https://evil.example"
 
@@ -49,7 +50,7 @@ def test_subscriber_invalid_email_returns_422():
 
 def test_cors_preflight_allows_configured_origin_without_wildcard():
     response = requests.options(
-        f"{API_BASE}/dashboard",
+        f"{CORS_API_BASE}/dashboard",
         headers={
             "Origin": ALLOWED_ORIGIN,
             "Access-Control-Request-Method": "GET",
@@ -64,7 +65,7 @@ def test_cors_preflight_allows_configured_origin_without_wildcard():
 
 def test_cors_preflight_blocks_disallowed_origin():
     response = requests.options(
-        f"{API_BASE}/dashboard",
+        f"{CORS_API_BASE}/dashboard",
         headers={
             "Origin": DISALLOWED_ORIGIN,
             "Access-Control-Request-Method": "GET",
