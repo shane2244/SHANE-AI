@@ -95,3 +95,26 @@ def test_companion_returns_guided_response(api_client):
     assert isinstance(data.get("invitation"), str)
     assert len(data["response"].strip()) > 0
     assert len(data["invitation"].strip()) > 0
+
+
+def test_companion_stream_returns_sse_and_done_event(api_client):
+    payload = {"message": "Give me a short reflection about feeling uncertain.", "remember": False}
+    response = api_client.post(f"{API_BASE}/companion/stream", json=payload, timeout=60, stream=True)
+    assert response.status_code == 200
+    assert response.headers.get("content-type", "").startswith("text/event-stream")
+
+    saw_delta_or_fallback = False
+    saw_done = False
+    for line in response.iter_lines(decode_unicode=True):
+        if not line:
+            continue
+        if '"delta"' in line:
+            saw_delta_or_fallback = True
+        if '"fallback": true' in line.lower():
+            saw_delta_or_fallback = True
+        if '"done": true' in line.lower():
+            saw_done = True
+            break
+
+    assert saw_delta_or_fallback is True
+    assert saw_done is True

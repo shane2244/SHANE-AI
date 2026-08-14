@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const refreshUser = useCallback(async () => {
     try {
       const response = await fetch(`${API}/auth/me`, { credentials: "include" });
+      if (response.status === 204) { setUser(null); return; }
       if (!response.ok) throw new Error("Not signed in");
       setUser(await response.json());
     } catch { setUser(null); }

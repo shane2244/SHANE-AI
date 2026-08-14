@@ -17,6 +17,7 @@ import PaymentSuccessPage from "@/pages/PaymentSuccessPage";
 import MemberAccessPage from "@/pages/MemberAccessPage";
 import TraditionsPage from "@/pages/TraditionsPage";
 import KnowledgeAtlasPage from "@/pages/KnowledgeAtlasPage";
+import MethodsPage from "@/pages/MethodsPage";
 
 function AppRoutes() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function AppRoutes() {
         <Route path="/" element={<TodayPage />} />
         <Route path="/journey" element={<JourneyPage />} />
         <Route path="/knowledge" element={<KnowledgeAtlasPage />} />
+        <Route path="/methods" element={<MethodsPage />} />
         <Route path="/blueprint" element={<Navigate to="/app/discovery" replace />} />
         <Route path="/app/discovery" element={<BlueprintPage />} />
         <Route path="/companion" element={<CompanionPage />} />

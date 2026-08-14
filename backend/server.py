@@ -27,6 +27,7 @@ db = client[os.environ["DB_NAME"]]
 stripe.api_key = os.environ["STRIPE_SECRET_KEY"]
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 APP_ALLOWED_HOSTS = set(os.environ["APP_ALLOWED_HOSTS"].split(","))
+APP_ALLOWED_ORIGINS = [f"https://{host}" for host in APP_ALLOWED_HOSTS]
 
 app = FastAPI(title="SHANE-AI Reflection API")
 api_router = APIRouter(prefix="/api")
@@ -341,9 +342,12 @@ async def exchange_auth_session(payload: AuthSessionRequest, response: Response)
     return User(user_id=user_id, email=auth_data["email"], name=auth_data["name"], picture=auth_data.get("picture", ""), is_premium=is_premium)
 
 
-@api_router.get("/auth/me", response_model=User)
+@api_router.get("/auth/me")
 async def auth_me(request: Request):
-    return await current_user(request)
+    user = await current_user(request, required=False)
+    if not user:
+        return Response(status_code=204)
+    return user
 
 
 @api_router.post("/auth/logout")
@@ -462,7 +466,7 @@ async def member_events(request: Request):
 
 
 app.include_router(api_router)
-app.add_middleware(CORSMiddleware, allow_credentials=True, allow_origins=os.environ.get("CORS_ORIGINS", "*").split(","), allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_credentials=True, allow_origins=APP_ALLOWED_ORIGINS, allow_methods=["*"], allow_headers=["*"])
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 

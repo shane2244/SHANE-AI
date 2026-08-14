@@ -25,6 +25,7 @@ export const SiteShell = () => {
       <footer className="site-footer">
         <span data-testid="footer-brand">SHANE-AI</span>
         <span data-testid="privacy-message"><ShieldCheck size={16} /> Your reflections belong to you.</span>
+        <Link to="/methods" data-testid="methods-link">Methods & accuracy</Link>
         <span data-testid="footer-signature">Higher self · Human first</span>
       </footer>
     </div>
