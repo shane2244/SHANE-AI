@@ -1,0 +1,157 @@
+{
+  "theme": "dark",
+  "archetype": "Organic & Earthy / Luxury (Dark)",
+  "typography": {
+    "fonts": {
+      "heading": "Cormorant Garamond",
+      "body": "Manrope",
+      "mono": "JetBrains Mono"
+    },
+    "scales": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight",
+      "h3": "text-xl sm:text-2xl",
+      "h4": "text-lg sm:text-xl",
+      "body": "text-base leading-relaxed tracking-wide",
+      "overline": "text-xs tracking-[0.2em] uppercase"
+    },
+    "rules": [
+      "Use Cormorant Garamond for all H1-H3 to convey spirituality, elegance, and warmth.",
+      "Use Manrope for all UI text, inputs, and functional body copy for clear app usability.",
+      "Never use default bold for headers. Use font-light (300) or font-medium (500).",
+      "The jump between a heading and its subheading must not exceed 2 Tailwind steps."
+    ]
+  },
+  "colors": {
+    "background": "#080A09",
+    "surface": "#141816",
+    "surface_elevated": "#1A201D",
+    "border": "#27322D",
+    "primary": "#A3BCA9",
+    "primary_foreground": "#080A09",
+    "secondary": "#D4AF37",
+    "text": "#E5ECE7",
+    "text_muted": "#8B9E93",
+    "rules": [
+      "No pure black or pure white. All grays must be tinted with deep forest green.",
+      "Do not use generic gradients. Use solid colors with noise/texture overlays.",
+      "Primary accent (Pale Sage) for active states and primary buttons."
+    ]
+  },
+  "visual_enhancers": {
+    "surfaces": [
+      "Optical Clarity Glassmorphism: bg-black/60, backdrop-blur-xl, border-b border-white/10 for sticky headers. NEVER use fully transparent backgrounds under text.",
+      "Solid Warmth: For clinical/health/mood tracking cards, use solid surface color (#141816) with 1px border (#27322D)."
+    ],
+    "textures": [
+      "Subtle noise overlay (opacity 2-3%) on the main background to break the digital flatness.",
+      "Soft ambient glows (blur-3xl) behind key elements like the AI companion avatar or Tarot cards."
+    ]
+  },
+  "layouts": {
+    "system": "Generous Spacing (p-8, p-12, p-16)",
+    "grid_modes": {
+      "landing": "Mode A (Tetris Grid) - grid-cols-1 md:grid-cols-12, wide gaps (gap-8). Asymmetrical, overlapping layers.",
+      "dashboard": "Mode B (High Density) - grid-cols-1 lg:grid-cols-3, gap-6. Strict hierarchy for the 3-stage journey."
+    },
+    "rules": [
+      "Mobile-first responsive grids.",
+      "Images must not exceed 80vh on mobile.",
+      "Grid children must be direct children. Use align-items: start to override stretch if needed."
+    ]
+  },
+  "grids": {
+    "bento_rules": "Always implement asymmetry in marketing sections. Leave 'breathing room' or use empty cells for offset alignment."
+  },
+  "component_name": {
+    "cards": "Remove default shadcn shadow. Use flat surface + 1px border. Add subtle inner glow for depth.",
+    "buttons": "Pill-shaped (rounded-full), subtle hover lift (-translate-y-0.5), explicit hover colors (hover:text-white).",
+    "inputs": "bg-transparent border-border focus:border-primary text-text px-4 py-3 rounded-lg"
+  },
+  "component_path": {
+    "shadcn_ui": "/app/frontend/src/components/ui/",
+    "notes": "Use Shadcn components for forms, dialogs, and interactive logic, but customize them heavily using the colors above."
+  },
+  "motion": {
+    "libraries": [
+      "framer-motion",
+      "lenis"
+    ],
+    "rules": [
+      "Smooth scrolling via Lenis for the entire application to add premium momentum.",
+      "Staggered fade-up entrances for Bento grid items using framer-motion.",
+      "Micro-interactions: Hover states MUST change text color and background explicitly (e.g., hover:bg-surface_elevated hover:text-white).",
+      "Exclude transforms from universal transitions. Use explicit transitions (e.g., transition-colors duration-200)."
+    ]
+  },
+  "accessibility": {
+    "rules": [
+      "All interactive elements MUST have data-testid attributes (kebab-case, role-based). Example: data-testid='tarot-draw-button'",
+      "Ensure APCA / WCAG AA contrast for text over backgrounds. Use text-shadow over images if needed.",
+      "Focus states: focus:ring-2 focus:ring-primary focus:outline-none.",
+      "Respect prefers-reduced-motion."
+    ]
+  },
+  "image_urls": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1548362851-ea052637ad64?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwxfHxjYWxtJTIwYWJzdHJhY3QlMjB0ZXh0dXJlfGVufDB8fHx8MTc4NjcyODQ4N3ww&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract blurry green/blue texture for the AI core/hero background (use with heavy opacity/blend modes)."
+    },
+    "journey_portrait": {
+      "url": "https://images.unsplash.com/photo-1611674814056-da174f13dd31?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHwzfHxteXN0aWNhbCUyMG5hdHVyZSUyMHBvcnRyYWl0fGVufDB8fHx8MTc4NjcyODQ4N3ww&ixlib=rb-4.1.0&q=85",
+      "description": "Earthy mystical portrait for the 'Self-Realization' or 'Who Am I' section."
+    },
+    "tarot_play_therapy": {
+      "url": "https://images.pexels.com/photos/14190188/pexels-photo-14190188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Mystical tarot cards on ritualistic cloth for the Tarot as Play Therapy feature section."
+    }
+  },
+  "media": {
+    "rules": [
+      "Hero image max overlay opacity: bg-black/50. Prefer gradient overlays.",
+      "Never use placeholder URLs. Use the provided image_urls.",
+      "Preserve subject scale and use object-cover."
+    ]
+  },
+  "3d_libraries": {
+    "recommendation": "Framer Motion 3D or standard Framer Motion",
+    "usage": "For simple 3D transitions (e.g., spinning a Tarot card) where a full Three.js canvas is overkill."
+  },
+  "instructions_to_main_agent": {
+    "general": [
+      "Create a hybrid full-stack wellness app integrating a marketing landing page that seamlessly transitions into the core web app experience.",
+      "Apply the Dark theme globally. Use #080A09 as the main background.",
+      "Build a sticky header with glassmorphism (bg-black/60 backdrop-blur-xl). Never fully transparent.",
+      "Incorporate the AI Companion chat seamlessly without it looking like a generic SaaS chatbot.",
+      "Include a Tarot Play Therapy section visually using Framer Motion for interactive card selection.",
+      "Do not use generic gradients. Use the provided colors.",
+      "Use Lucide-React for standard icons, and Radix UI primitives via Shadcn.",
+      "Add `data-testid` to EVERY interactive element (button, link, input, toggle)."
+    ],
+    "file_extensions": "CRITICAL: You are working in a JavaScript environment. Use .js and .jsx extensions. DO NOT use .tsx or .ts."
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition. Eg: `transition: all`. Always add transitions for specific interactive elements excluding transforms.",
+    "You MUST NOT center align the app container, ie do not add `.App { text-align: center; }` in the css file.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style.",
+    "NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations separate good from extraordinary.",
+    "Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Create new components that match the style and conventions of existing components when needed.",
+    "Use `sonner` for toasts. The component should be a .js or .jsx file in `/app/src/components/ui/sonner.js` (adjusting from the prompt's default .tsx since we are in JS)."
+  ],
+  "GENERAL UI UX DESIGN GUIDELINES": [
+    "Maintain a clear visual hierarchy using contrast, spacing, and typography.",
+    "Ensure the application communicates empathy and calmness, mapping back to the 'wellness companion' persona.",
+    "Avoid overwhelming the user. Progressively disclose complex functionalities (e.g., detailed journal metrics).",
+    "Make sure navigation is obvious and accessible, mapping to the 3-step self-discovery journey."
+  ]
+}
